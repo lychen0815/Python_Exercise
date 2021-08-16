@@ -1,4 +1,4 @@
-# pythonExercise
+# Python_Exercise
 
 This Repository is about some code training of python
 
