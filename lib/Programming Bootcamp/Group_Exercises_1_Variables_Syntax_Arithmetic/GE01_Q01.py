@@ -21,6 +21,8 @@ There are many different ways that you can approach this problem and achieve the
 tempZero = (0 * (9 / 5) + 32)
 tempOneHundred = (100 * (9 / 5) + 32)
 
+
+## Part (b)
 # Print results
 # Remember to convert integers to strings!
 print("0C = " + str(tempZero) + "F")
@@ -29,6 +31,7 @@ print("100C = " + str(tempOneHundred) + "F")
 # Obtain temperature in °C from the user
 # Note: A type conversion (String -> Int) is required
 #define Celsius
-Celsius = int(input("please enter a celsius: "))
-Fahrenheit = (Celsius * (9 / 5))+ 32
-print(Fahrenheit)
+tempCelsius = int(input("please enter a celsius: "))
+tempFahrenheit = (tempCelsius * (9 / 5))+ 32
+print("Temperature = " + str(tempCelsius) + "°C")
+print("Temperature = " + str(tempFahrenheit)+ "°F")
