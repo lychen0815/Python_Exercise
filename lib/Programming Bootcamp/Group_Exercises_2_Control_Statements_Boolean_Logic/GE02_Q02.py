@@ -10,6 +10,7 @@ Write a program that gets a numeric mark from the user and returns the respectiv
 
 user_mark = int(input("please enter your numeric mark >>>"))
 
+#Add judgment condition
 if user_mark >= 80:
     print("Your grade is HD")
 elif user_mark >= 70:
