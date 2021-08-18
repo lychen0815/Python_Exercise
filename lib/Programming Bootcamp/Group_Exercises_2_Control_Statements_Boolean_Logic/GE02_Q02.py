@@ -21,3 +21,30 @@ elif user_mark >= 50:
     print("Your grade is P")
 else:
     print("Your grade is N")
+    
+    
+    
+    """
+    method2
+# Initialise variable
+grade = ''
+
+# Get input
+mark = int(input("Enter mark: "))
+
+# Mark to grade
+if 0 <= mark < 50:  # Same as mark >= 0 and mark < 50
+    grade = 'N'
+elif 50 <= mark < 60:  # mark >= 50 and mark < 60
+    grade = 'P'
+elif 60 <= mark < 70:  # mark >= 60 and mark < 70
+    grade = 'C'
+elif 70 <= mark < 80:  # mark >= 70 and mark < 80
+    grade = 'D'
+elif 80 <= mark:  # Can replace with else
+    grade = 'HD'
+
+# Display result
+print(mark, " (", grade, ")")
+
+"""
