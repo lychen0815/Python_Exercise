@@ -15,5 +15,5 @@ log_password = input("please enter a password >>>")
 if(log_username == "admin" and log_password == "hunter2"):
     print("Access Granted!")
 else:
-    print("Error username or password !! Please try again")
+    print("Error username or password ! Please try again")
 
