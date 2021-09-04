@@ -6,29 +6,54 @@ Write a function def sumOfUnique(nums): that takes nums as a list of integers
 and return the sum of all the unique elements of nums.
 
 """
-
-
 def sumOfUnique(nums):
-    """
-    A function that sums up all the non-duplicate items in the given list of integers
-    Args:
-        1. nums(list): A list of integers
-    Returns:
-        1. int: The sum of non-duplicate items in nums
-    """
-    value_count = {}  # initialise a dictionary that stores the count of each number in the given list, key is the number, value is the count of that number
 
-    for num in nums:  # iterate through the given list of integers
-        if num in value_count.keys():  # if the current number already exists in the key of the value_count dictionary
-            value_count[num] += 1  # add the count of that number(value of that key) by 1
-        else:  # if the current number does not exit in the key of the dictionary
-            value_count[num] = 1  # create a new key for the number, and assign the count of that number as 1
+    value_count = {}
 
-    sum = 0  # initialise a variable that records the sum of non-duplicate values
+    for i in nums:
+        if i in value_count.keys():
 
-    for key, value in value_count.items():  # iterate through all items in the dictionary, dict().items() returns a list of tuples, where each tuple is a key-value pair
-        if value == 1:  # if the count of the number is 1 (i.e. non-duplicate)
-            sum += key  # add the number to the sum
-    print(sum)
+          value_count[i] += 1
+        else:
+          value_count[i] = 1
+    print(value_count)
+
+    sum = 0
+
+    for key,value in value_count.items():
+        if value == 1:
+            sum += key
+
     return sum
 sumOfUnique([1,2,3,2] )
+
+'''
+    nums.sort(reverse=False)
+    #new_list = []
+    for i in range(len(nums)):
+        while i < len(nums):
+            if nums[i] == nums[i+1]:
+                nums.remove(nums[i+1])
+    print(nums)
+    return nums
+
+
+sumOfUnique([1,2,3,2])
+'''
+
+'''
+n = len(nums)
+    new_list = []
+    for i in range(0, n - 1):
+        for j in range(i + 1, n):
+            if nums[i] == nums[j]:
+                break
+            else:
+                new_list.append(nums[i])
+                # nums.remove(nums[j])
+            # print(nums[i], nums[j])
+
+    print(new_list)
+    return new_list
+    
+'''

@@ -11,7 +11,7 @@
 
 #method 1:
 
-'''
+
 def sum(nums, target):
     if len(nums) < 2:
         return
@@ -36,7 +36,7 @@ def sum(nums, target):
             return [dict1[num], i]
 nums = [2,7,11,15]
 print(sum(nums,9))
-
+'''
 
 
 
