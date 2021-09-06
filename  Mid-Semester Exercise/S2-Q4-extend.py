@@ -1,25 +1,20 @@
+test_list = ['126','371','118']
 
-tests = ['126','371','118']
-with open("test.txt",'w') as f:
-    f.write('\n'.join(tests))
-
+with open('test2.txt','w') as f:
+    f.write('\n'.join(test_list))
 
 def checkArmstrong(filename):
-
-    with open(filename) as file:
-
-        for line in file.readlines():
+    with open(filename) as f:
+        for line in f.readlines():
             line = line.strip()
-            digits_total = 0
-            the_number = int(line)
-
-            for digit in line:
-                digits_total += int(digit) ** 3
-
-            if digits_total == the_number:
+            digit_num = int(line)
+            total_num = 0
+            for num in line:
+                total_num += int(num) ** 3
+            if total_num == digit_num:
                 print(True)
             else:
                 print(False)
 
 
-checkArmstrong("test.txt")
+checkArmstrong('test2.txt')

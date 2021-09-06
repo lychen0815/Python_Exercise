@@ -7,6 +7,8 @@
 
 '''
 
+#这个解法不是删除重复的数，它原数是不删除的（比如：【1，2，2】，输出【1，2】，而不是【1】
+
 def removeDulicates(nums):
     nums.sort()
     n = len(nums)

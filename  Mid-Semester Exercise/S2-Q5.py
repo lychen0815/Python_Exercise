@@ -1,68 +1,36 @@
-'''
-Write a python program to create a class “Student”, which would allow user to enter and store student's information including Name, ID, and list of marks achieved by the student in the specific unit.
+class Student:
+    def __init__(self,name,id,marks):
+        self.name = name
+        self.id = id
+        self.marks = marks
 
-This Student class contains:
-
-instance variables required to represent each individual student data. A student should contain:
-
-name, as a string
-id as a integer
-marks, can be implemented as a dictionary
-a collection of methods defined for manipulating a student's contact:
-
-__init__ : Contructor method.
-update_mark: method to update the mark of the specif unit.
-avg_mark: method to return the average mark of the student.
-__str__: use to print all the details of the student in a proper format.
-__eq__: use to check if the two objects of student class are same or not.
-IMPORTANT After completing the class, you have to test the functionality of each method.
-'''
-class Student():
-    def __init__(self,name,ID,marks):
-        self.stud_name = name
-        self.stud_ID = ID
-        self.stud_marks = marks
-
-    def update(self,unit,mark):
-        self.stud_marks[unit] = mark
+    def update_mark(self,unit,mark):
+        self.marks[unit] = mark
 
     def avg_mark(self):
         total_mark = 0
-        unitCount = len(self.stud.marks)
-
-        for key,value in self.stu_marks.items():
-            total_mark += value
-        avg = total_mark / unitCount
-        return avg
+        unit_count = len(self.marks)
+        for k,v in self.marks.items():
+            total_mark += v
+        avg_mark = total_mark / unit_count
+        return avg_mark
 
     def __str__(self):
-        std_info = "ID: " + str(self.stud_ID)
-        std_info += "\nName: " + self.stud_name
-        std_info += "\nMarks: " + str(self.stud_marks)
-        return std_info
+        stu_info = "This student name is: " + str(self.name)
+        stu_info += "\nID: " + str(self.id)
+        stu_info += "\nMarks: " + str(self.marks)
+        return stu_info
 
     def __eq__(self,other):
         if isinstance(other,Student):
-            if self.stu_ID == other.study_ID and self.stud.name == other.stud.name:
+            if self.name == other.name and self.id == other.id:
                 return True
             else:
                 return False
+        else:
+            return False
 
-
-
-
-student3 = Student("shirin", 11111, {"Python": 50, "Java": 60, "C+": 80})
-student3.update("Python",100)
-print(student3)
-
-
-
-
-
-
-
-
-
-
-
-
+student1 = Student("jordan","1234785",{'python':100,'java':101})
+#student3 = Student("jordan1","1234785",{'python':100,'java':101})
+#student1.update_mark("Language",100)
+print(student1)
