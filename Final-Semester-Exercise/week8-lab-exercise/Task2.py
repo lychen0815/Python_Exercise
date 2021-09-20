@@ -2,7 +2,7 @@
  Let's write a script that reads textfile.txt and create a csv file spider_man.csv with 2 columns: name and category to store the name of the video and whether it is TV or Film respectively. Below is what the output csv will look like:
 '''
 
-with open("/Users/liuyuchen/Desktop/Python_Exercise/Final-Semester-Exercise/week8-lab-exercise/textfile.txt") as f:
+with open("textfile.txt") as f:
     lines = f.readlines()
 
 lines = [l.strip() for l in lines]
