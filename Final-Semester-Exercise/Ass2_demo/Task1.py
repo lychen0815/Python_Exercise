@@ -46,5 +46,5 @@ for i in dialogue:
     new_tuple = "".join(i)
     new_dialogue += (new_tuple + "\n")
 
-with open('32009682_clean_dialogue.txt', 'w') as f:
+with open('test1_clean_dialogue.txt', 'w') as f:
     f.write(new_dialogue)
