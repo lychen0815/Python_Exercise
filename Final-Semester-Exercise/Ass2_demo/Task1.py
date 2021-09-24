@@ -32,8 +32,6 @@ def extractDialogue():
         new_list.append(tuple(new_line))
     tuple_pattern = tuple(new_list)
 
-    #print(tuple_pattern[0][0])
-
     return tuple_pattern
 
 
@@ -46,5 +44,5 @@ for i in dialogue:
     new_tuple = "".join(i)
     new_dialogue += (new_tuple + "\n")
 
-with open('test1_clean_dialogue.txt', 'w') as f:
+with open('32009682_clean_dialogue.txt', 'w') as f:
     f.write(new_dialogue)
