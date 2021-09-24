@@ -30,9 +30,7 @@ def extractDialogue():
     for i in range(len(list_pattern)):
         new_line = list_pattern[i].split(":")
         new_list.append(tuple(new_line))
-    tuple_pattern = tuple(new_list)
-
-    return tuple_pattern
+    return new_list
 
 
 
