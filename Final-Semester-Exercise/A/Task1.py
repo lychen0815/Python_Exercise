@@ -43,14 +43,6 @@ def extractDialogue():
 #将提取好的文字放到新文件中
 
 dialogue = extractDialogue()
-'''
-print(dialogue)
-new_dialogue = ""
 
-for i in dialogue:
-    new_tuple = "".join(i)
-    new_dialogue += (new_tuple + "\n")
-#print(new_dialogue)
-'''
 with open('32009682_clean_dialogue.txt', 'w') as f:
     f.write(str(dialogue))
