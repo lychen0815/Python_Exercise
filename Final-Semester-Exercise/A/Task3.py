@@ -15,7 +15,7 @@ res = []
 for r in dialogue_list:
     #抛弃之前的符号
     res.append(r[2:])
-print(res)
+print(res[3])
 #根据角色分组
 new_dialogue = ""
 

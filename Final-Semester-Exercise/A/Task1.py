@@ -9,8 +9,8 @@ def extractDialogue():
     #删除所有含(),[]的句子
     pattern = re.sub(r"\(.*?\)|\[.*?\]", "", data)
 
-    # 删除)之后的空格(也就是有两个空格的位置）(删除完（）之后，其后有空格，这步就是在处理这个）但不匹配换行符)
-    delete_space = re.sub(r'[^\S\r\n]{2,}', "", pattern)
+    # 删除)之后的空格(也就是有两个空格的位置）(删除完（）之后，其后有空格，这步就是在处理这个）但不匹配换行符),但保留一个空格
+    delete_space = re.sub(r'[^\S\r\n]{2,}', " ", pattern)
 
     #删除开头几个带：by的句子
     pattern2 = re.sub(r".*by:.*", "", delete_space)
