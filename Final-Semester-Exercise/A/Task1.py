@@ -8,8 +8,12 @@ def extractDialogue():
 
     #删除所有含(),[]的句子
     pattern = re.sub(r"\(.*?\)|\[.*?\]", "", data)
+
+    # 删除)之后的空格(也就是有两个空格的位置）(删除完（）之后，其后有空格，这步就是在处理这个）但不匹配换行符)
+    delete_space = re.sub(r'[^\S\r\n]{2,}', "", pattern)
+
     #删除开头几个带：by的句子
-    pattern2 = re.sub(r".*by:.*", "", pattern)
+    pattern2 = re.sub(r".*by:.*", "", delete_space)
 
     #删除所有空行
     pattern3 = "".join([s for s in pattern2.splitlines(True) if s.strip()])
@@ -30,17 +34,23 @@ def extractDialogue():
     for i in range(len(list_pattern)):
         new_line = list_pattern[i].split(":")
         new_list.append(tuple(new_line))
+
     return new_list
+
 
 
 
 #将提取好的文字放到新文件中
 
 dialogue = extractDialogue()
+'''
+print(dialogue)
 new_dialogue = ""
+
 for i in dialogue:
     new_tuple = "".join(i)
     new_dialogue += (new_tuple + "\n")
-
+#print(new_dialogue)
+'''
 with open('32009682_clean_dialogue.txt', 'w') as f:
-    f.write(new_dialogue)
+    f.write(str(dialogue))
