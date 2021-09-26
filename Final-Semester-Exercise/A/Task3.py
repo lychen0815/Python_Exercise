@@ -23,8 +23,9 @@ for i in separate_dialogue:
     with open('32009682_'+ i.lower() +'.txt', 'w') as f:
         f.write(str(separate_dialogue[i]))
 
-
+#以下是Task3单独写出来的
 ####################################
+#首先判断角色的unique的数量>100
 
 file = open("32009682_ross.txt",'r')
 
@@ -39,26 +40,29 @@ character_dialogue = new_data.split(' ')
 unique_word = set(character_dialogue)
 
 ############################
+#进行行频率计算
+
 from collections import Counter
-import re
+
 #根据要求，不区分大小写，所以统一换成小写
 lower_data = data.lower()
 
 new_list = data.split("\n")
 
+#将每一行去重后的元素一起计算，则得到行频率
 separate_word = []
 for i in new_list:
 
     list_dialogue = i.split(" ")
-    print(list_dialogue)
-    c = Counter(list_dialogue)  # 取出每个单词出现的个数
+    #将每一行的重复元素去掉
+    new_set = set(list_dialogue)
+    separate_word += new_set
 
 
+word_counter = Counter(separate_word) # 取出每个单词出现的个数
 
-
-
-
-
+highest_frequencies = word_counter.most_common(5)   #取出频率最高的前5个
+print(highest_frequencies)
 
 
 
