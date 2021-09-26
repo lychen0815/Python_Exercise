@@ -32,7 +32,8 @@ def extractDialogue():
 
     new_list = []
     for i in range(len(list_pattern)):
-        new_line = list_pattern[i].split(":")
+        #要删掉：后面的空格，所以写的是": ",而不是":"
+        new_line = list_pattern[i].split(": ")
         new_list.append(tuple(new_line))
 
     return new_list
