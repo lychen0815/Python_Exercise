@@ -1,3 +1,5 @@
+#Task2的所有代码全部含进了task3
+
 
 file = open('32009682_clean_dialogue.txt','r')
 
@@ -27,42 +29,60 @@ for i in separate_dialogue:
 ####################################
 #首先判断角色的unique的数量>100
 
-file = open("32009682_ross.txt",'r')
+for j in separate_dialogue:
+    file = open('32009682_'+ j.lower() +'.txt','r')
 
-data = file.read()
+    data = file.read()
 
-#去掉所有的换行符
-new_data = data.replace("\n","")
+    #去掉所有的换行符
+    new_data = data.replace("\n","")
 
-character_dialogue = new_data.split(' ')
+    character_dialogue = new_data.split(' ')
 
-#找出一个角色里面不重复的单词
-unique_word = set(character_dialogue)
+    #找出一个角色里面不重复的单词
+    unique_word = set(character_dialogue)
 
-############################
-#进行行频率计算
+    if len(unique_word) > 100:
+        ############################
+        #进行行频率计算
 
-from collections import Counter
+        from collections import Counter
 
-#根据要求，不区分大小写，所以统一换成小写
-lower_data = data.lower()
+        #根据要求，不区分大小写，所以统一换成小写
+        lower_data = data.lower()
 
-new_list = data.split("\n")
+        new_list = data.split("\n")
 
-#将每一行去重后的元素一起计算，则得到行频率
-separate_word = []
-for i in new_list:
+        #将每一行去重后的元素一起计算，则得到行频率
+        separate_word = []
+        for i in new_list:
 
-    list_dialogue = i.split(" ")
-    #将每一行的重复元素去掉
-    new_set = set(list_dialogue)
-    separate_word += new_set
+            list_dialogue = i.split(" ")
+            #将每一行的重复元素去掉
+            new_set = set(list_dialogue)
+            separate_word += new_set
 
 
-word_counter = Counter(separate_word) # 取出每个单词出现的个数
+        word_counter = Counter(separate_word) # 取出每个单词出现的个数
 
-highest_frequencies = word_counter.most_common(5)   #取出频率最高的前5个
-print(highest_frequencies)
+        highest_frequencies = word_counter.most_common(5)   #取出频率最高的前5个
+        #print(highest_frequencies)
+
+
+        ################################
+        #存入到pandas
+
+        import pandas as pd
+
+        df = pd.DataFrame(highest_frequencies,columns=['word','freq'])
+        #将role的这一列插到最前面
+
+        df.insert(0, 'role', j)
+        print(df)
+
+        df.to_csv('32009682_data.csv')
+
+
 
 
 
