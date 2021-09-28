@@ -29,6 +29,8 @@ for i in separate_dialogue:
 ####################################
 #首先判断角色的unique的数量>100
 
+holding = {} #将得出的数据存储
+
 for j in separate_dialogue:
     file = open('32009682_'+ j.lower() +'.txt','r')
     #file = open('32009682_' + 'monica' + '.txt', 'r')
@@ -70,6 +72,7 @@ for j in separate_dialogue:
         word_counter = Counter(separate_word) # 取出每个单词出现的个数
 
         highest_frequencies = word_counter.most_common(5)   #取出频率最高的前5个
+        #print(highest_frequencies)
 
         ################################
         #存入到pandas
@@ -79,10 +82,13 @@ for j in separate_dialogue:
         df = pd.DataFrame(highest_frequencies,columns=['word','freq'])
 
         #将role的这一列插到最前面
-        df.insert(0, 'role', j)
-        print(df)
+        df.insert(0, 'role', j.lower())
 
-        df.to_csv('32009682_data.csv')
+        holding[j] = df
+
+final = pd.concat(list(holding.values()), ignore_index=True)
+print(final)
+final.to_csv('32009682_data.csv')
 
 
 
