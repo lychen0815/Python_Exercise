@@ -31,16 +31,19 @@ for i in separate_dialogue:
 
 for j in separate_dialogue:
     file = open('32009682_'+ j.lower() +'.txt','r')
-
+    #file = open('32009682_' + 'monica' + '.txt', 'r')
     data = file.read()
 
     #去掉所有的换行符
     new_data = data.replace("\n","")
 
+
     character_dialogue = new_data.split(' ')
+
 
     #找出一个角色里面不重复的单词
     unique_word = set(character_dialogue)
+
 
     if len(unique_word) > 100:
         ############################
@@ -51,13 +54,14 @@ for j in separate_dialogue:
         #根据要求，不区分大小写，所以统一换成小写
         lower_data = data.lower()
 
-        new_list = data.split("\n")
+        new_list = lower_data.split("\n")
 
         #将每一行去重后的元素一起计算，则得到行频率
         separate_word = []
-        for i in new_list:
-
-            list_dialogue = i.split(" ")
+        #因为写进文件的时候最后一行是\n，所以专门不去读取它
+        for i in new_list[:-1]:
+            #将每一行末尾的空格删去
+            list_dialogue = i.strip().split(" ")
             #将每一行的重复元素去掉
             new_set = set(list_dialogue)
             separate_word += new_set
@@ -66,8 +70,6 @@ for j in separate_dialogue:
         word_counter = Counter(separate_word) # 取出每个单词出现的个数
 
         highest_frequencies = word_counter.most_common(5)   #取出频率最高的前5个
-        #print(highest_frequencies)
-
 
         ################################
         #存入到pandas
@@ -75,8 +77,8 @@ for j in separate_dialogue:
         import pandas as pd
 
         df = pd.DataFrame(highest_frequencies,columns=['word','freq'])
-        #将role的这一列插到最前面
 
+        #将role的这一列插到最前面
         df.insert(0, 'role', j)
         print(df)
 
