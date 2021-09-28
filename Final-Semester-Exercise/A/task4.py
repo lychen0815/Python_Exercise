@@ -87,5 +87,5 @@ final.to_csv('32009682_data.csv')
 # 以下是task4的内容
 
 import matplotlib.pyplot as plt
-final.plot(x = 'word',kind = 'bar')
+final.plot(x='word',kind='bar')
 plt.show()
