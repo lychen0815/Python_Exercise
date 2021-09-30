@@ -65,7 +65,7 @@ for j in separate_dialogue:
         word_counter = Counter(separate_word)  # 取出每个单词出现的个数
 
         highest_frequencies = word_counter.most_common(5)  # 取出频率最高的前5个
-        # print(highest_frequencies)
+
 
         ################################
         # 存入到pandas
