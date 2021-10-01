@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 class CleanData:
     """
-
+    This class is used to clean data
     """
     def extractDialogue(self):
         """
@@ -50,6 +50,8 @@ class CleanData:
     def separateDialogue(self):
         """
         A function that separate the dialogues of different characters(roles)
+         Return:
+            1.dictionary: A dictionary to tore dialogue together according to the role
         """
         clean_dialogue_file = open('32009682_clean_dialogue.txt', 'r')
 
@@ -66,22 +68,29 @@ class CleanData:
                 separate_dialogue[line[0]] = (line[1] + '\n')
 
         # Write the dialogues of the corresponding role to its file
-        for i in separate_dialogue:
-            with open('32009682_' + i.lower() + '.txt', 'w') as f:
-                f.write(str(separate_dialogue[i]))
+        for role in separate_dialogue:
+            with open('32009682_' + role.lower() + '.txt', 'w') as f:
+                f.write(str(separate_dialogue[role]))
         return separate_dialogue
 
 
 class AnalyzeData:
+    """
+    This class is used to analyze data
+    """
     def obtainFrequentWords(self):
         """
         A function that obtain Top 5 Frequent Words For Each Role
-        Returns:
+        Return:
             1.dataframe: A dataframe to store the information of role,word,and freq:
         """
+
         clean_data = CleanData()
-        holding = {}  # Because dataframe needs to be merged at the end, all holding data frames are stored using holding{}
+        clean_data.saveExtractDialogue()    #Call the method of the CleanData class
         separate_dialogue = clean_data.separateDialogue()
+
+        holding = {}  # Because dataframe needs to be merged at the end, all holding data frames are stored using holding{}
+
         for role in separate_dialogue:
             separate_file = open('32009682_' + role.lower() + '.txt', 'r')
 
@@ -95,13 +104,11 @@ class AnalyzeData:
 
             if len(unique_word) > 100:  #Select a character with a number of unique words greater than 100
 
-                # 进行行频率计算
                 lower_data = separate_data.lower()  #Case insensitive, so all data is replaced with lowercase
 
                 separate_lower_data = lower_data.split("\n")
 
-                # The row frequency is obtained when each row is calculated together to remove the duplicate elements
-                separate_word = []
+                separate_word = []   # The row frequency is obtained when each row is calculated together to remove the duplicate elements
 
                 for i in separate_lower_data[:-1]:  # Because the last line is \n , so don't read it specifically
 
@@ -126,8 +133,7 @@ class AnalyzeData:
         df_data.to_csv('32009682_data.csv')
 
         return df_data
-        #####################
-        # 以下是task4的内容
+
 
     def visualiseData(self):
         analze_data = AnalyzeData()
@@ -141,9 +147,5 @@ class AnalyzeData:
 
 
 
-clean_data = CleanData()
-clean_data.saveExtractDialogue()
-clean_data.separateDialogue()
 analze_data = AnalyzeData()
-#print(type(analze_data.obtainFrequentWords()))
 analze_data.visualiseData()
