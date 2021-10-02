@@ -146,6 +146,6 @@ class AnalyzeData:
 
 
 
-
+#Create an instance of AnalyzeData class and call the visualiseData method of that instance, and then the program will run automatically
 analze_data = AnalyzeData()
 analze_data.visualiseData()
