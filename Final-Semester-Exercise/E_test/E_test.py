@@ -132,7 +132,7 @@ class AnalyzeData:
 
         df_data = pd.concat(list(holding.values()), ignore_index=True)  # merged dataframe
 
-        df_data.to_csv('32009682_data.csv')
+        df_data.to_csv('32009682_data.csv', index=None)     # Save to csv file, but do not index
 
         return df_data
 

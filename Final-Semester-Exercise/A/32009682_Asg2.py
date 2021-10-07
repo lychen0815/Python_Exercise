@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import re
 from collections import Counter
 import pandas as pd
@@ -22,7 +16,7 @@ class CleanData:
         Returns:
             1.list: A list of clean-up character names and dilogues
         """
-        input_file = open("input_script.txt", 'r')
+        input_file = open("input_script.txt", 'r', encoding='utf-8')
         input_data = input_file.read()
 
         delete_bracket = re.sub(r"\(.*?\)|\[.*?\]", "", input_data)  # Delete all sentences that contain(),[]
@@ -52,7 +46,7 @@ class CleanData:
         """
         extract_dialogue = self.extractDialogue()
 
-        with open('32009682_clean_dialogue.txt', 'w') as f:
+        with open('32009682_clean_dialogue.txt', 'w', encoding='utf-8') as f:
             f.write(str(extract_dialogue))
 
     def separateDialogue(self):
@@ -61,7 +55,7 @@ class CleanData:
          Return:
             1.dictionary: A dictionary to tore dialogue together according to the role
         """
-        clean_dialogue_file = open('32009682_clean_dialogue.txt', 'r')
+        clean_dialogue_file = open('32009682_clean_dialogue.txt', 'r', encoding='utf-8')
 
         clean_dialogue_data = clean_dialogue_file.read()
 
@@ -77,7 +71,7 @@ class CleanData:
 
         # Write the dialogues of the corresponding role to its file
         for role in separate_dialogue:
-            with open('32009682_' + role.lower() + '.txt', 'w') as f:
+            with open('32009682_' + role.lower() + '.txt', 'w', encoding='utf-8') as f:
                 f.write(str(separate_dialogue[role]))
         return separate_dialogue
 
@@ -101,7 +95,7 @@ class AnalyzeData:
         holding = {}  # Because dataframe needs to be merged at the end, all holding data frames are stored using holding{}
 
         for role in separate_dialogue:
-            separate_file = open('32009682_' + role.lower() + '.txt', 'r')
+            separate_file = open('32009682_' + role.lower() + '.txt', 'r', encoding='utf-8')
 
             separate_data = separate_file.read()
 
@@ -138,7 +132,7 @@ class AnalyzeData:
 
         df_data = pd.concat(list(holding.values()), ignore_index=True)  # merged dataframe
 
-        df_data.to_csv('32009682_data.csv')
+        df_data.to_csv('32009682_data.csv', encoding='utf-8', index=None)  # Save to csv file, but do not index
 
         return df_data
 
@@ -150,10 +144,10 @@ class AnalyzeData:
         df_data = analze_data.obtainFrequentWords()
 
         np_data = np.array(df_data)
-        np_data = np_data.tolist()      #covert np array to list
-        role = []       # This list indicates which role the picture belongs to
-        role_x = []     # This list represents the word that appears on the x-axis of the picture
-        role_y = []     # This list represents freq (the frequency of lines in which words appear) that appear on the y axis of the picture
+        np_data = np_data.tolist()  # covert np array to list
+        role = []  # This list indicates which role the picture belongs to
+        role_x = []  # This list represents the word that appears on the x-axis of the picture
+        role_y = []  # This list represents freq (the frequency of lines in which words appear) that appear on the y axis of the picture
         for i in np_data:
             role.append(i[0])
             role_x.append(i[1])
@@ -161,7 +155,7 @@ class AnalyzeData:
 
         separate_role = []
         for j in range(len(role)):
-            if j % 5 == 0:      # Remove duplicate characters
+            if j % 5 == 0:  # Remove duplicate characters
                 separate_role.append(role[j])
 
         n = 5  # 5 for a small group
@@ -170,7 +164,7 @@ class AnalyzeData:
 
         graph_num = int(len(role) / 5)
 
-        fig, ax_arr = plt.subplots(nrows=2, ncols=3, sharex=False, sharey=False)    # draw subplots
+        fig, ax_arr = plt.subplots(nrows=2, ncols=3, sharex=False, sharey=False)  # draw subplots
 
         ax_arr = ax_arr.flatten()
 
@@ -183,22 +177,7 @@ class AnalyzeData:
 
         plt.show()
 
+
 # Create an instance of AnalyzeData class and call the visualiseData method of that instance, and then the program will run automatically
 analze_data = AnalyzeData()
 analze_data.visualiseData()
-
-
-# In[ ]:
-
-
-"""
-Provide concise and precise observations on Task4:
-    Each picture represents a character's data, the horizontal axis is the highest frequency of 5 words, 
-vertical axis is the corresponding frequency of these words. 
-    The bar chart is selected to clearly show a role, show the comparison between the words, 
-each bar is a clear and intuitive representation of the data
-    From the resulting graph, it can be seen that "i" appears the highest frequency, and the frequency of"you, the, a" appears second only to "i", 
-it seems that people still like to speak in first and second person, and the article also uses a lot
-
-"""    
-
