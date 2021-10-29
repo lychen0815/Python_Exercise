@@ -1,16 +1,24 @@
 """
 Q3 : This question is about Errors & exceptions.
 """
-def mystery_func_2(x,y):
+#(a) Please list all errors below.
 
-    r <- x%y
-    While r >0:
-        r = x % y
-    if r == 0
-        print y
-    else:
-        q=y
-        x=q
-        y=r
+"""
+1.SyntaxError
+2.logicError
+"""
 
-mystery_func_2(24, 54)
+
+
+#(b) Explain what does the mystery_func_2 function do?
+
+"""
+get remainder
+"""
+
+
+
+#(c) What is output for mystery_func_2(126,196) ?
+"""
+70
+"""
