@@ -1,4 +1,4 @@
-Account number: 123
-Account name: Melbourne bank
-Balance: 100
-Address: Australia Melbourne
+10012002,FIT9136.txt,53
+10012003,FIT9136.txt,40
+10012004,FIT9136.txt,FIT9133.txt,76
+10012005,FIT9136.txt,FIT9133.txt,66

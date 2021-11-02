@@ -41,4 +41,4 @@ class Bank:
 bank1 = Bank(123,'Melbourne bank',100,"Australia Melbourne")
 bank2 = Bank(133,'Monash Bank',200,'Clayton')
 
-bank1.passBook("output.txt")
+bank1.passBook("output1.txt")

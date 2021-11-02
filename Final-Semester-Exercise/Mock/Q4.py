@@ -1,48 +1,36 @@
-"""
-Q4 : This question is about File I/0.
-"""
+def find_student_grade(inputFile1,inputFile2,outputFile):
+    student_info = {}
 
-def find_student_grade(inputFile1,inputFile2):
-    all_student = []
-    new_students = []
-    with open(inputFile1) as input_file1:
-        for line in input_file1:
+    with open(inputFile1) as file1:
+        for line in file1.readlines():
             line = line.strip()
-            student_info = line.split(" ")
-            student_info.append('FIT9136')
-            all_student.append(student_info)
-    with open(inputFile2) as input_file2:
-        for line in input_file2:
-            line = line.strip()
-            student_info = line.split(" ")
-            student_info.append('FIT9133')
-            all_student.append(student_info)
+            new_line = line.split(' ')
+            student_info[new_line[0]] = new_line[1]
+        list1 = [[x,y] for x,y in student_info.items()]
+        for i in range(len(list1)):
+            list1[i].insert(1,inputFile1)
 
-    for each_student in all_student:
-        ID = each_student[0]
-        mark = each_student[1]
-        subject = each_student[2]
-        total_mark = 0
-        mark_num = 0
-        total_subject = ""
-        if ID not in new_students:
-            new_students.append(ID)
-            total_subject += subject
-            new_students.append(total_subject)
-            new_students.append(mark)
+        with open(inputFile2) as file2:
+            for line in file2.readlines():
+                line = line.strip()
+                new_line = line.split(" ")
+                if new_line[0] in student_info.keys():
+                    for student in list1:
+                        if new_line[0] == student[0]:
+                            student[2] = (int(student[2]) + int(new_line[1]))//2
+                            student.insert(2,inputFile2)
+        out_info = ""
+        for element in list1:
+            for idx in range(len(element)):
+                if idx == len(element)-1:
+                    out_info += str(element[idx])
+                else:
+                    out_info += str(element[idx]) + ","
 
-        else:
-            total_mark += int(mark)
-            mark_num += 1
-            total_subject += subject
-            avg_mark = total_mark // mark_num
-            new_students.append(ID)
-            new_students.append(total_subject)
-            new_students.append(avg_mark)
+            out_info += "\n"
+        with open(outputFile,'w') as file3:
+            file3.write(out_info)
 
-    print(new_students)
 
-    #print(all_student)
 
-find_student_grade("FIT9136.txt","FIT9133.txt")
-
+find_student_grade("FIT9136.txt","FIT9133.txt","output.txt")

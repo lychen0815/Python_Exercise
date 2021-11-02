@@ -33,7 +33,7 @@ def find_tuples(input_dic,threshold_value):
 
 def main():
 
-    create_dict(["HELLO world", "python is best"])
+    print(create_dict(["HELLO world", "python is best"]))
     print(find_tuples({"z": "xyz", "f": 2, "9": 8, "6": 11}, 7))
 
 if __name__ =="__main__":
