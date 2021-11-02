@@ -10,5 +10,6 @@ def insertion_sort(a_list):
                 target_idx -= 1
             else:
                 break
+        print(sorted_list)
     return sorted_list
-insertion_sort([5,1,7,2])
+insertion_sort(["a", "f", "c", "g", "d", "z"])
